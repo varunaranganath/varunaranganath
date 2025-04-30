@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varun A Ranganath - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2d3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--light-text);
+            margin-bottom: 1rem;
+            margin: 0 auto 1rem;
+            overflow: hidden; /* Ensures the image stays within the circle */
+        }
+        
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-upload-label {
+            display: inline-block;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .photo-upload-label:hover {
+            background-color: var(--accent-color);
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            transition: all 0.3s;
+        }
+        
+        .nav-links li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item i {
+            width: 30px;
+            color: var(--secondary-color);
+            margin-right: 1rem;
+        }
+        
+        .skill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .skill-category h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-list li:before {
+            content: '▹';
+            color: var(--secondary-color);
+            margin-right: 0.5rem;
+        }
+        
+        .experience-item, .edu-item, .project-item, .cert-item {
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .experience-item:hover, .edu-item:hover, .project-item:hover, .cert-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .experience-title, .project-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        
+        .position, .project-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .company, .project-tech {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .project-tech {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+        
+        .date, .location {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .project-description, .duties {
+            margin-top: 1rem;
+        }
+        
+        .project-description p, .duties p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .project-link:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .edu-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .degree {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .institution {
+            font-size: 1.1rem;
+        }
+        
+        .cert-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .cert-issuer {
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .social-link i {
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            main {
+                padding: 0 1rem;
+            }
+            
+            .experience-title, .project-title, .edu-details {
+                flex-direction: column;
+            }
+            
+            .date {
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="home">
+        <div class="header-content">
+            <div class="profile-img">
+                <img id="profile-photo" src="C:\Users\VARUN A\Pictures\varun.jpg" alt="Varun A Ranganath">
+            </div>
+            
+            <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+            <h1>Varun A Ranganath</h1>
+            <p>Computer Science Engineer & Web Developer</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a Computer Science Engineering student at PES College of Engineering with a passion for software development and machine learning. With practical experience through internships at Larsen & Toubro and Revature, I've developed strong skills in full-stack development, data management, and machine learning concepts.</p>
+                    <p>My expertise includes building responsive web applications, working with databases, and implementing machine learning models. I'm dedicated to continuous learning and staying updated with emerging technologies in the field.</p>
+                </div>
+                <div class="contact-info" id="contact">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Tumkur, Karnataka, India</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91-9019872659</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>varunaranganath3@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://linkedin.com/in/varun-a-ranganath" target="_blank">linkedin.com/in/varun-a-ranganath</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/varunaranganath" target="_blank">github.com/varunaranganath</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experience">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-item">
+                <div class="experience-title">
+                    <div class="position-info">
+                        <div class="position">Pre-training Program</div>
+                        <div class="company">Revature</div>
+                    </div>
+                    <div class="experience-meta">
+                        <div class="date">January 2025 - April 2025</div>
+                        <div class="location">Remote (Tumkur), India</div>
+                    </div>
+                </div>
+                <div class="duties">
+                    <p>Over the course of an intensive 10-week training, I gained hands-on experience and deep understanding of a wide range of industry-relevant technologies and practices:</p>
+                    <ul class="skill-list">
+                        <li>Java – Core concepts, OOP, exception handling, collections, multithreading, and wrapper classes</li>
+                        <li>SQL – Data modeling, joins, query optimization, constraints, and keys (primary, foreign, composite)</li>
+                        <li>Git & GitHub – Version control, collaboration, and workflow management</li>
+                        <li>Agile & Scrum – Working in sprints, daily stand-ups, and collaborative problem-solving</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-title">
+                    <div class="position-info">
+                        <div class="position">Software Development Intern</div>
+                        <div class="company">Larsen & Toubro (L&T)</div>
+                    </div>
+                    <div class="experience-meta">
+                        <div class="date">September 2024 - October 2024</div>
+                        <div class="location">Mysuru, India</div>
+                    </div>
+                </div>
+                <div class="duties">
+                    <ul class="skill-list">
+                        <li>Developed a Weather Dashboard application that retrieves real-time weather data for user-specified locations</li>
+                        <li>Integrated external APIs and implemented functionality to store weather data in a relational database</li>
+                        <li>Measured and analyzed performance metrics such as data retrieval and rendering times</li>
+                        <li>Enhanced practical knowledge of database management, API integration, and performance optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="project-item">
+                <div class="project-title">
+                    <div class="project-info">
+                        <div class="project-name">Fake Image Detection using ELA</div>
+                        <div class="project-tech">Python, OpenCV, TensorFlow, Machine Learning</div>
+                    </div>
+                    <div class="date">March 2025</div>
+                </div>
+                <div class="project-description">
+                    <ul class="skill-list">
+                        <li>Developed a deep learning-based model to classify real and fake images using ELA</li>
+                        <li>Preprocessed image datasets and extracted ELA features to highlight manipulated regions</li>
+                        <li>Built and trained a CNN in TensorFlow to achieve high prediction accuracy</li>
+                        <li>Learned image forensics, feature extraction, data labeling, and model evaluation techniques</li>
+                        <li>Deployed the model to detect fake images with a confidence level</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-title">
+                    <div class="project-info">
+                        <div class="project-name">Flower Prediction</div>
+                        <div class="project-tech">Python, Machine Learning</div>
+                    </div>
+                    <div class="date">September 2024</div>
+                </div>
+                <div class="project-description">
+                    <ul class="skill-list">
+                        <li>Built a machine learning model to classify iris flower species based on sepal/petal measurements using the Iris dataset</li>
+                        <li>Applied data preprocessing techniques including normalization and label encoding</li>
+                        <li>Achieved high accuracy by optimizing hyperparameters and using cross-validation</li>
+                        <li>Learned practical ML workflow: data cleaning, model training, evaluation, and visualization using libraries like pandas, scikit-learn, and matplotlib</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-title">
+                    <div class="project-info">
+                        <div class="project-name">Full-Stack Weather Dashboard</div>
+                        <div class="project-tech">Python full stack</div>
+                    </div>
+                    <div class="date">September 2024</div>
+                </div>
+                <div class="project-description">
+                    <ul class="skill-list">
+                        <li>The application fetches real-time weather data for a given location, stores it in a database, and measures the time taken for data retrieval and display</li>
+                        <li>This project enhanced my skills in database management and performance optimization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-title">
+                    <div class="project-info">
+                        <div class="project-name">Weather Website Forecast 5 days</div>
+                        <div class="project-tech">HTML, CSS, JS</div>
+                    </div>
+                    <div class="date">September 2024</div>
+                </div>
+                <div class="project-description">
+                    <ul class="skill-list">
+                        <li>Developed a responsive weather forecasting web app that displays 5-day weather data for any searched city using the OpenWeatherMap API</li>
+                        <li>Implemented real-time data fetching using fetch() and parsed JSON responses to show temperature, humidity, wind speed, and weather conditions</li>
+                        <li>Improved user experience with input validation, loading indicators, and error handling for invalid or missing cities</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="edu-item">
+                <div class="edu-details">
+                    <div class="edu-info">
+                        <div class="degree">B.E. in Computer Science</div>
+                        <div class="institution">PES College of Engineering</div>
+                    </div>
+                    <div class="edu-meta">
+                        <div class="date">January 2022 - May 2025</div>
+                        <div class="location">Mandya, India</div>
+                    </div>
+                </div>
+                <div class="edu-details">
+                    <div>CGPA: 7.67</div>
+                </div>
+                <div class="coursework">
+                    <h4>Relevant Coursework:</h4>
+                    <ul class="skill-list">
+                        <li>Data Structures & Algorithms</li>
+                        <li>Database Management Systems</li>
+                        <li>OOP Concepts in Java</li>
+                        <li>Web Development</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skill-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>Java</li>
+                        <li>C</li>
+                        <li>JavaScript</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Developer Tools</h3>
+                    <ul class="skill-list">
+                        <li>VS Code</li>
+                        <li>GitHub</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Technologies/Frameworks</h3>
+                    <ul class="skill-list">
+                        <li>ReactJS (Basics)</li>
+                        <li>MongoDB</li>
+                        <li>OpenCV</li>
+                        <li>TensorFlow</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certifications">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certification-container">
+                <div class="cert-item">
+                    <div class="cert-name">Revature Pre-Training Program</div>
+                    <div class="cert-issuer">Foundational Java Backend Development</div>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-name">AWS ML Foundation Badge</div>
+                    <div class="cert-issuer">Amazon</div>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-name">AWS Cloud Foundation Badge</div>
+                    <div class="cert-issuer">Amazon</div>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-name">Internship Certificate</div>
+                    <div class="cert-issuer">LTTS</div>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-name">Eduskill Internship</div>
+                    <div class="cert-issuer">Eduskill Foundations</div>
+                </div>
+                
+                <div class="cert-item">
+                    <div class="cert-name">All Certificates Collection</div>
+                    <div class="cert-issuer">View All My Professional Certifications</div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" id="certificates-link" onclick="promptForCertificatesLink(); return false;">View Certificates</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>Varun A Ranganath</h3>
+            <p>Computer Science Engineer & Web Developer</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/varun-a-ranganath" target="_blank" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/varunaranganath" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:varunaranganath3@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 Varun A Ranganath. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Function to handle the certificates link
+        function promptForCertificatesLink() {
+            // Check if we've saved a link in local storage
+            const savedLink = localStorage.getItem('certificatesLink');
+            
+            if (savedLink) {
+                window.open(savedLink, '_blank');
+            } else {
+                // First visit - show message with instructions
+                alert("To make the 'View Certificates' button work:\n\n1. Replace this button with your actual Google Drive link\n2. Or click OK and enter your Google Drive certificates URL when prompted");
+                
+                const userLink = prompt("Enter your Google Drive certificates URL:");
+                
+                if (userLink && userLink.trim() !== "") {
+                    // Save for future use
+                    localStorage.setItem('certificatesLink', userLink);
+                    window.open(userLink, '_blank');
+                }
+            }
+        }
+        
+        // Handle profile photo upload
+        document.getElementById('photo-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Check if the file is an image
+                if (!file.type.match('image.*')) {
+                    alert('Please select an image file');
+                    return;
+                }
+                
+                // Check file size (limit to 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Image size should be less than 5MB');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // Update the image source
+                    document.getElementById('profile-photo').src = e.target.result;
+                    
+                    // Save the image to localStorage (base64)
+                    localStorage.setItem('profilePhoto', e.target.result);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Load profile photo from localStorage if available
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedPhoto = localStorage.getItem('profilePhoto');
+            if (savedPhoto) {
+                document.getElementById('profile-photo').src = savedPhoto;
+            }
+        });
+    </script>
+</body>
+</html>
